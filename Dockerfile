@@ -33,4 +33,4 @@ RUN set -eux; \
 	a2enmod socache_shmcb
 
 EXPOSE 80
-CMD ["apache2-foreground"]
+CMD ["/usr/bin/apache2-foreground"]
