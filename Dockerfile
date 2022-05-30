@@ -26,6 +26,8 @@ STOPSIGNAL SIGWINCH
 COPY apache2-foreground /usr/bin/
 
 RUN set -eux; \
+# make apache2-frontend executable
+    chmod +x /usr/bin/apache2-foreground; \
 # apache modules
 	a2enmod ext_filter; \
 	a2enmod cache; \
