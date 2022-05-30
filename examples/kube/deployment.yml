@@ -21,8 +21,8 @@ spec:
           mountPath: /etc/apache2/apache2.conf
           subPath: apache2.conf
         - name: apache2-config-volume
-          mountPath: /srv/www/index.html
-          subPath: index.html
+          mountPath: /srv/www/index.md
+          subPath: index.md
         ports:
         - containerPort: 80
           name: apache2
@@ -35,20 +35,5 @@ spec:
             - key: apache2
               path: apache2.conf
             - key: apache2-site
-              path: index.html
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: apache2-service
-spec:
-  type: NodePort
-  selector:
-    app: apache2
-  ports:
-  - protocol: TCP
-    port: 80
-    targetPort: 80
-    nodePort: 30080
-    name: apache
+              path: index.md
 

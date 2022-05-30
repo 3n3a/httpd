@@ -1,0 +1,20 @@
+apiVersion: v1
+data:
+  apache2: "User ${APACHE_RUN_USER}\nGroup ${APACHE_RUN_GROUP}\nErrorLog ${APACHE_LOG_DIR}/error.log\n\nHostnameLookups
+    Off\n\n# Include module configuration:\nIncludeOptional mods-enabled/*.load\nIncludeOptional
+    mods-enabled/*.conf\n\n# Include list of ports to listen on\nInclude ports.conf\n\nExtFilterDefine
+    md-to-html mode=output \\\n\tintype=text/markdown outtype=text/html \\\n\tcmd=\"/usr/bin/pandoc\"\n\n<Directory
+    />\n\tOptions FollowSymLinks\n\tAllowOverride None\n\tRequire all denied\n</Directory>\n\n<Directory
+    /srv/www/>\n\tOptions Indexes FollowSymLinks\n\tAllowOverride None\n\tRequire
+    all granted\n\tSetOutputFilter md-to-html\n\tAddType text/markdown .md\n</Directory>\n\n<VirtualHost
+    *:80>\n\tCacheSocache shmcb\n\tCacheSocacheMaxSize 102400\n\tCacheEnable socache
+    /\n\tDocumentRoot /srv/www\n</VirtualHost>\n\n"
+  apache2-site: |-
+    # It works
+
+    hehe
+kind: ConfigMap
+metadata:
+  name: apache2-config
+  namespace: default
+
