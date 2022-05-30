@@ -1,0 +1,11 @@
+version: '2'
+
+services:
+    apache2:
+        image: 3n3a/apache2:latest
+        ports:
+            - 8080:80
+        volumes:
+            - ./config/apache2.conf:/etc/apache2/apache2.conf:ro
+            - ./config/html:/srv/www:ro
+
