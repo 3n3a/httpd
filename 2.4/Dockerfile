@@ -53,6 +53,8 @@ RUN set -eux; \
 		make \
 		wget \
 		zlib1g-dev \
+		# for markdown serving
+		markdown \
 	; \
 	rm -r /var/lib/apt/lists/*; \
 	\
@@ -207,6 +209,8 @@ RUN set -eux; \
 		-e 's!^(\s*TransferLog)\s+\S+!\1 /proc/self/fd/1!g' \
 		-e 's!^(\s*User)\s+daemon\s*$!\1 www-data!g' \
 		-e 's!^(\s*Group)\s+daemon\s*$!\1 www-data!g' \
+		-e 's/^#\(LoadModule .*mod_socache_shmcb.so\)/\1/' \
+		-e 's/^#\(LoadModule ext_filter modules/mod_ext_filter.so\)/\1/' \
 		"$HTTPD_PREFIX/conf/httpd.conf" \
 		"$HTTPD_PREFIX/conf/extra/httpd-ssl.conf" \
 	; \

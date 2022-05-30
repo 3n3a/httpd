@@ -61,6 +61,7 @@ RUN set -eux; \
 		zlib-dev \
 		# mod_brotli
 		brotli-dev \
+		markdown \
 	; \
 	\
 	ddist() { \
